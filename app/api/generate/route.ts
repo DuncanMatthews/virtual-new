@@ -1,3 +1,5 @@
+export const maxDuration = 100; // This function can run for a maximum of 5 seconds
+
 import { NextRequest } from "next/server";
 import Replicate from "replicate";
 
@@ -33,17 +35,17 @@ export async function POST(request: NextRequest) {
         input: {
           eta: 1,
           image: imageUrl,
-          scale: 30,
+          scale: 9,
           prompt: prompt,
           a_prompt:
             "The room is a photorealistic, meticulously designed interior space with attention to detail, showcasing a harmonious blend of textures, lighting, and carefully selected furnishings. The composition is well-balanced, creating a visually appealing and inviting atmosphere. The image has a professional, high-resolution quality with crisp details and accurate shadows and reflections.",
           n_prompt:
             "low quality, blurry, pixelated, cluttered, messy, poorly lit, mismatched furniture, inconsistent style, unrealistic shadows, incorrect perspective, distorted objects, cut-off elements, artifacts, grain, noise",
-          ddim_steps: 40,
+          ddim_steps: 30,
           num_samples: "1",
           value_threshold: 0.1,
-          image_resolution: "768",
-          detect_resolution: 768,
+          image_resolution: "512",
+          detect_resolution: 512,
           distance_threshold: 0.1,
         },
       },

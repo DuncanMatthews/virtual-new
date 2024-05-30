@@ -3,7 +3,8 @@ import { Viewport } from "next";
 import { Link } from "@nextui-org/link";
 import clsx from "clsx";
 import { ClerkProvider } from "@clerk/nextjs";
-import Head from "next/head";
+import { Analytics } from "@vercel/analytics/react";
+import { Metadata } from "next";
 
 import { Providers } from "./providers";
 
@@ -17,6 +18,19 @@ export const viewport: Viewport = {
   ],
 };
 
+export const metadata: Metadata = {
+  title: "Virtual Renovation: AI-Powered Interior Design Made Easy",
+  description:
+    "Transform your living space with Virtual Renovation's AI interior design services. Get personalized design recommendations, 3D renderings, and expert support to create the home of your dreams.",
+  keywords: [
+    "AI interior design",
+    "virtual renovation",
+    "home design",
+    "interior design services",
+    "AI-powered design",
+  ],
+};
+
 export default function RootLayout({
   children,
 }: {
@@ -24,9 +38,6 @@ export default function RootLayout({
 }) {
   return (
     <html suppressHydrationWarning lang="en">
-      <Head>
-        <title>Test Title</title>
-      </Head>
       <ClerkProvider>
         <body
           className={clsx(
@@ -36,12 +47,12 @@ export default function RootLayout({
         >
           <Providers themeProps={{ attribute: "class", defaultTheme: "dark" }}>
             <div className="relative flex flex-col h-screen">
-              <Navbar />
-
+              <header>
+                <Navbar />
+              </header>
               <main className="container mx-auto max-w-7xl pt-16 px-6 flex-grow">
                 {children}
               </main>
-
               <footer className="w-full flex items-center justify-center py-3">
                 <Link
                   isExternal
@@ -50,11 +61,12 @@ export default function RootLayout({
                   title="nextui.org homepage"
                 >
                   <span className="text-default-600">Powered by</span>
-                  <p className="text-primary">Digital Transformations </p>
+                  <p className="text-primary">Digital Transformations</p>
                 </Link>
               </footer>
             </div>
           </Providers>
+          <Analytics />
         </body>
       </ClerkProvider>
     </html>

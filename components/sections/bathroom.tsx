@@ -9,8 +9,8 @@ export default function Bathroom() {
           isBlurred
           isZoomed
           alt="NextUI Fruit Image with Zoom"
-          src="https://nextui-docs-v2.vercel.app/images/fruit-1.jpeg"
-          width={240}
+          src="/images/rooms/bathroom-1.png"
+          width={800}
         />
       </div>
       <div>
@@ -18,8 +18,8 @@ export default function Bathroom() {
           isBlurred
           isZoomed
           alt="NextUI Fruit Image with Zoom"
-          src="https://nextui-docs-v2.vercel.app/images/fruit-1.jpeg"
-          width={240}
+          src="/images/rooms/bathroom-2.png"
+          width={800}
         />
       </div>
     </div>
