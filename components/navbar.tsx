@@ -21,8 +21,6 @@ import { ThemeSwitch } from "@/components/theme-switch";
 import { GithubIcon, HeartFilledIcon, SearchIcon } from "@/components/icons";
 
 export default function Navbar() {
-  // const user = await currentUser();
-
   const searchInput = (
     <Input
       aria-label="Search"
@@ -46,7 +44,10 @@ export default function Navbar() {
 
   return (
     <NextUINavbar maxWidth="xl" position="sticky">
-      <NavbarContent className="basis-1/5 sm:basis-full" justify="start">
+      <NavbarContent
+        className="basis-1/2 sm:basis-1/3 lg:basis-1/4"
+        justify="start"
+      >
         <NavbarBrand as="li" className="gap-3 max-w-fit">
           <NextLink className="flex justify-start items-center gap-1" href="/">
             <Image
@@ -55,7 +56,9 @@ export default function Navbar() {
               src={"/images/virtualrenovationailogo.webp"}
               width={50}
             />
-            <p className="font-bold text-inherit">Virtual Renovation AI</p>
+            <p className="font-bold text-inherit hidden sm:block">
+              Virtual Renovation AI
+            </p>
           </NextLink>
         </NavbarBrand>
         <ul className="hidden lg:flex gap-4 justify-start ml-2">
@@ -77,20 +80,9 @@ export default function Navbar() {
       </NavbarContent>
 
       <NavbarContent
-        className="hidden sm:flex basis-1/5 sm:basis-full"
+        className="hidden sm:flex basis-1/2 sm:basis-2/3 lg:basis-3/4"
         justify="end"
       >
-        {/* <NavbarItem className="hidden sm:flex gap-2">
-          {user ? (
-            <div>
-              <SignOutButton />
-            </div>
-          ) : (
-            <div>
-              <SignInButton />
-            </div>
-          )}
-        </NavbarItem> */}
         <NavbarItem className="hidden sm:flex gap-2">
           <ThemeSwitch />
         </NavbarItem>
@@ -110,7 +102,7 @@ export default function Navbar() {
         </NavbarItem>
       </NavbarContent>
 
-      <NavbarContent className="sm:hidden basis-1 pl-4" justify="end">
+      <NavbarContent className="sm:hidden basis-1/2" justify="end">
         <Link isExternal aria-label="Github" href={siteConfig.links.github}>
           <GithubIcon className="text-default-500" />
         </Link>

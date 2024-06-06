@@ -1,14 +1,44 @@
 export type themeType =
-  | "Modern"
-  | "Vintage"
-  | "Minimalist"
-  | "Professional"
-  | "Tropical"
+  | "Mid Century Modern"
+  | "Pop Art"
+  | "Art Brut"
+  | "Art Deco"
+  | "Art Nouveau"
+  | "Biophilic"
+  | "Classic"
+  | "Hollywood Regency"
   | "Industrial"
-  | "Modern Farmhouse"
+  | "Minimalist"
+  | "Modern"
+  | "Noir"
+  | "Postmodern"
+  | "Psychedelic"
+  | "Rustic"
+  | "Scandinavian"
+  | "Transitional"
+  | "Vaporwave"
+  | "Vintage"
+  | "Zen"
+  | "Modern"
+  | "Contemporary"
+  | "Minimalist"
+  | "Industrial"
   | "Mid-Century Modern"
   | "Scandinavian"
-  | "Farmhouse";
+  | "Bohemian"
+  | "Rustic"
+  | "Farmhouse"
+  | "Coastal"
+  | "Transitional"
+  | "Traditional"
+  | "Art Deco"
+  | "Eclectic"
+  | "Shabby Chic"
+  | "Hollywood Regency"
+  | "French Country"
+  | "Mediterranean"
+  | "Tropical"
+  | "Asian-Inspired";
 
 export type roomType =
   | "Living Room"
@@ -22,16 +52,46 @@ export type roomType =
   | "Gaming Room";
 
 export const themes: themeType[] = [
-  "Modern",
-  "Minimalist",
-  "Professional",
-  "Tropical",
-  "Vintage",
+  "Mid Century Modern",
+  "Pop Art",
+  "Art Brut",
+  "Art Deco",
+  "Art Nouveau",
+  "Biophilic",
+  "Classic",
+  "Hollywood Regency",
   "Industrial",
-  "Modern Farmhouse",
-  "Farmhouse",
+  "Minimalist",
+  "Modern",
+  "Noir",
+  "Postmodern",
+  "Psychedelic",
+  "Rustic",
   "Scandinavian",
+  "Transitional",
+  "Vaporwave",
+  "Vintage",
+  "Zen",
+  "Modern",
+  "Contemporary",
+  "Minimalist",
+  "Industrial",
   "Mid-Century Modern",
+  "Scandinavian",
+  "Bohemian",
+  "Rustic",
+  "Farmhouse",
+  "Coastal",
+  "Transitional",
+  "Traditional",
+  "Art Deco",
+  "Eclectic",
+  "Shabby Chic",
+  "Hollywood Regency",
+  "French Country",
+  "Mediterranean",
+  "Tropical",
+  "Asian-Inspired",
 ];
 export const rooms: roomType[] = [
   "Living Room",

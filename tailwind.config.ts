@@ -18,6 +18,10 @@ const config = {
       },
     },
     extend: {
+      textColor: {
+        gradient:
+          "transparent linear-gradient(to right, #ff0000, #0000ff) 0 0 no-repeat",
+      },
       colors: {
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",

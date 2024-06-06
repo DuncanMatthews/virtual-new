@@ -1,8 +1,8 @@
 export type SiteConfig = typeof siteConfig;
 
 export const siteConfig = {
-  name: "Next.js + NextUI",
-  description: "Make beautiful websites regardless of your design experience.",
+  name: "Virtual Renovation",
+  description: "AI-powered interior design platform that allows users to visualize different design styles for their living spaces.",
   navItems: [
     {
       label: "Home",
@@ -15,10 +15,6 @@ export const siteConfig = {
     {
       label: "Pricing",
       href: "/pricing",
-    },
-    {
-      label: "Blog",
-      href: "/blog",
     },
     {
       label: "About",
@@ -34,26 +30,7 @@ export const siteConfig = {
       label: "Dashboard",
       href: "/dashboard",
     },
-    {
-      label: "Projects",
-      href: "/projects",
-    },
-    {
-      label: "Team",
-      href: "/team",
-    },
-    {
-      label: "Calendar",
-      href: "/calendar",
-    },
-    {
-      label: "Settings",
-      href: "/settings",
-    },
-    {
-      label: "Help & Feedback",
-      href: "/help-feedback",
-    },
+
     {
       label: "Logout",
       href: "/logout",

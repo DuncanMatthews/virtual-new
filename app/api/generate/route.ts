@@ -20,46 +20,39 @@ export async function POST(request: NextRequest) {
 
   try {
     const { imageUrl, theme, room }: Props = await request.json();
-    const prompt =
-      room === "Gaming Room"
-        ? "a video gaming room"
-        : `A ${theme.toLowerCase()} ${room.toLowerCase()}`;
+    const prompt = `A ${theme.toLowerCase()} ${room.toLowerCase()}`;
 
     const replicate = new Replicate({
       auth: REPLICATE_API_TOKEN,
     });
 
     const output: any = await replicate.run(
-      "jagilley/controlnet-hough:854e8727697a057c525cdb45ab037f64ecca770a1769cc52287c2e56472a247b",
+      "adirik/interior-design:76604baddc85b1b4616e1c6475eca080da339c8875bd4996705440484a6eac38",
       {
         input: {
-          eta: 1,
           image: imageUrl,
-          scale: 9,
           prompt: prompt,
-          a_prompt:
-            "The room is a photorealistic, meticulously designed interior space with attention to detail, showcasing a harmonious blend of textures, lighting, and carefully selected furnishings. The composition is well-balanced, creating a visually appealing and inviting atmosphere. The image has a professional, high-resolution quality with crisp details and accurate shadows and reflections.",
-          n_prompt:
-            "low quality, blurry, pixelated, cluttered, messy, poorly lit, mismatched furniture, inconsistent style, unrealistic shadows, incorrect perspective, distorted objects, cut-off elements, artifacts, grain, noise",
-          ddim_steps: 30,
-          num_samples: "1",
-          value_threshold: 0.1,
-          image_resolution: "512",
-          detect_resolution: 512,
-          distance_threshold: 0.1,
+          guidance_scale: 15,
+          negative_prompt: "lowres, watermark, banner, logo, watermark, contactinfo, text, deformed, blurry, blur, out of focus, out of frame, surreal, extra, ugly, upholstered walls, fabric walls, plush walls, mirror, mirrored, functional, realistic",
+          prompt_strength: 0.8,
+          num_inference_steps: 50,
         },
       },
     );
 
+
+
     const originalImage = imageUrl;
-    const generatedImage = output && output[1] ? (output[1] as string) : null;
-    // const roomId = output && output.id ? output.id as string : null;
+    const generatedImage = output
+    // const responseId = output
+
+
 
     return new Response(
       JSON.stringify({
         original: originalImage,
         generated: generatedImage,
-        // id: roomId,
+        // id: responseId,
       }),
       {
         status: 200,

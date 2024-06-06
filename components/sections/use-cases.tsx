@@ -4,7 +4,7 @@ import { Tabs, Tab, Card, CardBody } from "@nextui-org/react";
 import { LuBedDouble } from "react-icons/lu";
 import { MdOutlineKitchen } from "react-icons/md";
 import { PiCouch } from "react-icons/pi";
-import { TbBath } from "react-icons/tb";
+import { LiaBathSolid } from "react-icons/lia";
 
 import Bedroom from "./bedroom";
 import Kitchen from "./kitchen";
@@ -14,9 +14,15 @@ import Bathroom from "./bathroom";
 export default function UseCases() {
   const [selected, setSelected] = React.useState("bedroom");
 
+  const getIconClassName = (key: string) =>
+    selected === key ? "text-white" : "text-gray-900 dark:text-white";
+
+  const getTextClassName = (key: string) =>
+    selected === key ? "text-white" : "text-gray-900 dark:text-white";
+
   return (
-    <div className="flex w-full flex-col">
-      <div className="max-w-4xl w-full">
+    <div className="flex w-full flex-col items-center text-gray-100 dark:text-gray-100">
+      <div className="max-w-4xl w-full px-4 sm:px-6 lg:px-8">
         <Tabs
           fullWidth
           aria-label="Options"
@@ -24,36 +30,47 @@ export default function UseCases() {
           color="primary"
           selectedKey={selected}
           variant="bordered"
-          onSelectionChange={(key: { toString: () => any }) =>
-            setSelected(key.toString())
-          }
+          onSelectionChange={(key) => setSelected(key.toString())}
         >
           <Tab
             key="bedroom"
             title={
               <div className="flex items-center space-x-2">
-                <LuBedDouble color="white" size={20} />
-                <span>Bedroom</span>
+                <LuBedDouble
+                  className={getIconClassName("bedroom")}
+                  size={20}
+                />
+                <span
+                  className={`hidden sm:inline ${getTextClassName("bedroom")}`}
+                >
+                  Bedroom
+                </span>
               </div>
             }
           >
-            <Card className="mt-4">
+            <Card className="mt-4 border-4 border-gray-100 dark:border-gray-900">
               <CardBody className="flex justify-center">
                 <Bedroom />
               </CardBody>
             </Card>
           </Tab>
           <Tab
-            key="music"
+            key="kitchen"
             title={
               <div className="flex items-center space-x-2">
-                <MdOutlineKitchen color="white" size={20} />
-
-                <span>Kitchen</span>
+                <MdOutlineKitchen
+                  className={getIconClassName("kitchen")}
+                  size={20}
+                />
+                <span
+                  className={`hidden sm:inline ${getTextClassName("kitchen")}`}
+                >
+                  Kitchen
+                </span>
               </div>
             }
           >
-            <Card className="mt-5">
+            <Card className="mt-5 border-4 border-gray-100 dark:border-gray-900">
               <CardBody className="flex justify-center">
                 <Kitchen />
               </CardBody>
@@ -63,13 +80,16 @@ export default function UseCases() {
             key="living"
             title={
               <div className="flex items-center space-x-2">
-                <PiCouch color={"white"} size={20} />
-
-                <span>Living</span>
+                <PiCouch className={getIconClassName("living")} size={20} />
+                <span
+                  className={`hidden sm:inline ${getTextClassName("living")}`}
+                >
+                  Living
+                </span>
               </div>
             }
           >
-            <Card className="mt-5">
+            <Card className="mt-5 border-4 border-gray-100 dark:border-gray-900">
               <CardBody className="flex justify-center">
                 <Living />
               </CardBody>
@@ -79,13 +99,19 @@ export default function UseCases() {
             key="bathroom"
             title={
               <div className="flex items-center space-x-2">
-                <TbBath color={"white"} size={20} />
-
-                <span>Bathroom</span>
+                <LiaBathSolid
+                  className={getIconClassName("bathroom")}
+                  size={20}
+                />
+                <span
+                  className={`hidden sm:inline ${getTextClassName("bathroom")}`}
+                >
+                  Bathroom
+                </span>
               </div>
             }
           >
-            <Card className="mt-5">
+            <Card className="mt-5 border-4 border-gray-100 dark:border-gray-900">
               <CardBody className="flex justify-center">
                 <Bathroom />
               </CardBody>

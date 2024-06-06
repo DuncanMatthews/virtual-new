@@ -56,14 +56,16 @@ export default function Landing() {
 
   return (
     <div>
-      <main className="flex flex-1 mb-5 w-full flex-col items-center justify-center text-center px-4 sm:mt-20 mt-20 background-gradient">
-        <h1 className="mx-auto max-w-4xl font-display text-3xl font-bold tracking-normal text-gray-200 sm:text-5xl">
+      <main className="flex flex-1 mb-5 w-full flex-col items-center justify-center text-center px-4 sm:mt-20 mt-20">
+        <h1 className="mx-auto max-w-4xl font-display text-3xl font-bold tracking-normal text-gray-800 dark:text-gray-200  sm:text-5xl">
           Inspire your dream
           <br />
           <span>
             <div>
-              <span className="relative text-gradient">{typedText}</span>
-              <span className=" whitespace-nowrap text-gray-200">
+              <span className="relative bg-gradient-text bg-clip-text text-transparent ">
+                {typedText}
+              </span>
+              <span className=" whitespace-nowrap text-gray-700 dark:text-gray-200  ">
                 {" "}
                 using AI
               </span>

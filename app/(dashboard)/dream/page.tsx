@@ -18,6 +18,8 @@ export type GenerateResponseData = {
 //   remainingGenerations: 5,
 // };
 
+import { Switch } from "@nextui-org/switch";
+
 import {
   roomType,
   rooms,
@@ -33,6 +35,7 @@ import { CompareSlider } from "@/components/compare-slider";
 
 export default function Dream() {
   const { isLoaded, isSignedIn, user } = useUser();
+  const [isSelected, setIsSelected] = React.useState(false);
 
   const [theme, setTheme] = useState<themeType>("Modern");
   const [room, setRoom] = useState<roomType>("Living Room");
@@ -69,6 +72,40 @@ export default function Dream() {
   //       : undefined;
   //   },
   // };
+
+  async function generateHighResPhoto(fileUrl: string) {
+    await new Promise((resolve) => setTimeout(resolve, 200));
+    setLoading(true);
+    setProgress(0);
+
+    const res = await fetch("/api/generate-highres", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ imageUrl: fileUrl, theme, room }),
+    });
+
+    let response = (await res.json()) as GenerateResponseData;
+
+    if (res.status !== 200) {
+      setError(response as any);
+      setLoading(false);
+    } else {
+      setRestoredImage(response.generated);
+
+      // Simulate progress update
+      let currentProgress = 0;
+      const interval = setInterval(() => {
+        currentProgress += 10;
+        setProgress(currentProgress);
+        if (currentProgress >= 100) {
+          clearInterval(interval);
+          setLoading(false);
+        }
+      }, 500);
+    }
+  }
 
   async function generatePhoto(fileUrl: string) {
     await new Promise((resolve) => setTimeout(resolve, 200));
@@ -128,7 +165,7 @@ export default function Dream() {
         </a>
       )}
       <div className="flex items-center align-middle justify-center text-center">
-        <h1 className="mx-auto max-w-4xl font-display text-4xl font-bold tracking-normal sm:text-5xl mb-5 text-gray-200">
+        <h1 className="mx-auto max-w-4xl font-display text-4xl font-bold tracking-normal sm:text-5xl mb-5 text-gray-900 dark:text-gray-200 ">
           Get your <span className="text-purple-600">virtual renovation </span>{" "}
           Inspritation
         </h1>
@@ -147,7 +184,7 @@ export default function Dream() {
                       src="/number-1-white.svg"
                       width={30}
                     />
-                    <p className="text-left font-medium text-gray-200">
+                    <p className="text-left font-medium text-gray-800 dark:text-gray-200">
                       Choose your room theme.
                     </p>
                   </div>
@@ -157,67 +194,72 @@ export default function Dream() {
                     // @ts-ignore
                     setTheme={(newTheme) => setTheme(newTheme)}
                   />
-                </div>
-              )}
-              <div className="space-y-4 w-full max-w-sm">
-                <div className="flex mt-10 items-center space-x-3">
-                  <Image
-                    alt="1 icon"
-                    height={30}
-                    src="/number-2-white.svg"
-                    width={30}
-                  />
-                  <p className="text-left font-medium text-gray-200">
-                    Choose your room type.
-                  </p>
-                </div>
-                <DropDown
-                  themes={rooms}
-                  theme={room}
-                  // @ts-ignore
-                  setTheme={(newRoom) => setRoom(newRoom)}
-                />
-              </div>
-              <div className="mt-4 w-full max-w-sm">
-                <div className="flex mt-6 w-96 items-center space-x-3">
-                  <Image
-                    alt="1 icon"
-                    height={30}
-                    src="/number-3-white.svg"
-                    width={30}
-                  />
-                  <p className="text-left font-medium text-gray-200">
-                    Upload a picture of your room.
-                  </p>
-                </div>
-              </div>
-              <div className="sm:mt-0 mt-8">
-                <h2 className="mb-1 font-medium text-lg">Generated Room</h2>
-                {loading ? (
-                  <div className="flex flex-col items-center justify-center">
-                    <LoadingDots color="purple" style="large" />
-                    <div className="mt-4">
-                      <progress
-                        className="w-full h-2 appearance-none bg-gray-300 rounded-full overflow-hidden"
-                        max="100"
-                        value={progress}
+                  <div className="space-y-4 w-full max-w-sm">
+                    <div className="flex mt-10 items-center space-x-3">
+                      <Image
+                        alt="1 icon"
+                        height={30}
+                        src="/number-2-white.svg"
+                        width={30}
                       />
-                      <div className="mt-2 text-center text-gray-600">
-                        {progress}% Complete
+                      <p className="text-left font-medium text-gray-800 dark:text-gray-200">
+                        Choose your room type.
+                      </p>
+                    </div>
+                    <DropDown
+                      themes={rooms}
+                      theme={room}
+                      // @ts-ignore
+                      setTheme={(newRoom) => setRoom(newRoom)}
+                    />
+                  </div>
+                  <div className="md:my-8 my-8">
+                    <div className="mt-4 w-full max-w-sm">
+                      <div className="flex flex-col gap-2 flex-start">
+                        <Switch
+                          isSelected={isSelected}
+                          onValueChange={setIsSelected}
+                        >
+                          {isSelected ? "High Res" : "Standard Res"}
+                        </Switch>
+                        {isSelected && (
+                          <p className="text-small text-default-800">
+                            Takes Longer
+                          </p>
+                        )}
                       </div>
                     </div>
                   </div>
-                ) : restoredImage && originalPhoto ? (
+                </div>
+              )}
+
+              {loading ? (
+                <div className="flex flex-col items-center justify-center">
+                  <LoadingDots color="purple" style="large" />
+                  <div className="mt-4">
+                    <progress
+                      className="w-full h-2 appearance-none bg-gray-300 rounded-full overflow-hidden"
+                      max="100"
+                      value={progress}
+                    />
+                    <div className="mt-2 text-center text-gray-600">
+                      {progress}% Complete
+                    </div>
+                  </div>
+                </div>
+              ) : restoredImage && originalPhoto ? (
+                <div className="max-w-[500px] mx-auto mt-4">
                   <CompareSlider
                     original={URL.createObjectURL(originalPhoto)}
                     restored={restoredImage}
                   />
-                ) : null}
-              </div>
-              <div className="flex mt-5 items-center">
+                </div>
+              ) : null}
+
+              <div className="flex flex-col mt-5 items-center">
                 {error && (
                   <div
-                    className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded-xl mt-8 max-w-[575px]"
+                    className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded-xl mt-8 w-full max-w-xs"
                     role="alert"
                   >
                     <div className="bg-red-500 text-white font-bold rounded-t px-4 py-2">
@@ -228,25 +270,38 @@ export default function Dream() {
                     </div>
                   </div>
                 )}
-                {originalPhoto && !loading && !generatePhoto && (
-                  <div>
-                    {photoName}
-                    <Image
-                      alt="original photo"
-                      className="rounded-2xl"
-                      height={500}
-                      src={URL.createObjectURL(originalPhoto)}
-                      width={513}
-                    />
-                  </div>
-                )}
-                {!loading && !originalPhoto && (
-                  <UploadImage
-                    generatePhoto={generatePhoto}
-                    setOriginalPhoto={setOriginalPhoto}
-                    setPhotoName={setPhotoName}
-                  />
-                )}
+                <div className="max-h-[400px]">
+                  {originalPhoto && !loading && !generatePhoto && (
+                    <div className="w-full max-w-[250px] md:max-w-xs lg:max-w-sm xl:max-w-md">
+                      {photoName}
+                      <Image
+                        alt="original photo"
+                        className="rounded-2xl"
+                        height={500}
+                        src={URL.createObjectURL(originalPhoto)}
+                        width={513}
+                      />
+                    </div>
+                  )}
+                  {!loading && !originalPhoto && isSelected && (
+                    <div className="w-full max-w-[250px] md:max-w-lg lg:max-w-xl">
+                      <UploadImage
+                        generatePhoto={generateHighResPhoto}
+                        setOriginalPhoto={setOriginalPhoto}
+                        setPhotoName={setPhotoName}
+                      />
+                    </div>
+                  )}
+                  {!loading && !originalPhoto && !isSelected && (
+                    <div className="w-full max-w-[250px] md:max-w-lg lg:max-w-xl">
+                      <UploadImage
+                        generatePhoto={generatePhoto}
+                        setOriginalPhoto={setOriginalPhoto}
+                        setPhotoName={setPhotoName}
+                      />
+                    </div>
+                  )}
+                </div>
               </div>
             </>
           </motion.div>{" "}

@@ -1,4 +1,4 @@
-import { Switch } from "@headlessui/react";
+import { Label, Switch } from "@headlessui/react";
 
 function classNames(...classes: string[]) {
   return classes.filter(Boolean).join(" ");
@@ -40,7 +40,7 @@ export default function Toggle({
             )}
           />
         </Switch>
-        <Switch.Label as="span" className="ml-3">
+        <Label as="span" className="ml-3">
           <span
             className={`text-sm font-medium ${
               sideBySide ? "text-white" : "text-gray-500"
@@ -48,7 +48,7 @@ export default function Toggle({
           >
             Compare
           </span>
-        </Switch.Label>
+        </Label>
       </div>
     </Switch.Group>
   );
