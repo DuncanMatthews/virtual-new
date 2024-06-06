@@ -20,7 +20,7 @@ export async function POST(request: NextRequest) {
 
   try {
     const { imageUrl, theme, room }: Props = await request.json();
-    const prompt = `A ${theme.toLowerCase()} ${room.toLowerCase()}`;
+    const prompt = `A high resolution photo of a ${theme.toLowerCase()} styled ${room.toLowerCase()}`;
 
     const replicate = new Replicate({
       auth: REPLICATE_API_TOKEN,
@@ -32,7 +32,7 @@ export async function POST(request: NextRequest) {
         input: {
           image: imageUrl,
           prompt: prompt,
-          guidance_scale: 15,
+          guidance_scale: 7.5,
           negative_prompt: "lowres, watermark, banner, logo, watermark, contactinfo, text, deformed, blurry, blur, out of focus, out of frame, surreal, extra, ugly, upholstered walls, fabric walls, plush walls, mirror, mirrored, functional, realistic",
           prompt_strength: 0.8,
           num_inference_steps: 50,

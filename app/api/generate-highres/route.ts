@@ -22,7 +22,7 @@ async function generateImage(
   room: string,
   REPLICATE_API_TOKEN: string,
 ) {
-  const prompt = `A ${theme.toLowerCase()} ${room.toLowerCase()}`;
+  const prompt = `A high resolution photo of a ${theme.toLowerCase()} styled ${room.toLowerCase()}`;
 
   const replicate = new Replicate({
     auth: REPLICATE_API_TOKEN,
@@ -35,7 +35,7 @@ async function generateImage(
         seed: 1,
         image: imageUrl,
         prompt: prompt,
-        guidance_scale: 15,
+        guidance_scale: 7.5,
         negative_prompt:
           "lowres, watermark, banner, logo, watermark, contactinfo, text, deformed, blurry, blur, out of focus, out of frame, surreal, extra, ugly, upholstered walls, fabric walls, plush walls, mirror, mirrored, functional, realistic",
         prompt_strength: 0.8,

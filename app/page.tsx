@@ -1,9 +1,11 @@
 import Head from "next/head";
+
 import Landing from "@/components/landing";
 import UseCases from "@/components/sections/use-cases";
 import ButtonGlow from "@/components/button-glow";
 import ReviewCard from "@/components/review-card";
 import { reviews } from "@/public/data/reviews";
+import UseCaseSection from "@/components/usecase-section";
 
 export const metadata = {
   title: "Virtual Renovation: AI-Powered Interior Design Platform",
@@ -19,21 +21,20 @@ export default async function Home() {
     <>
       <Head>
         <title>{metadata.title}</title>
-        <meta name="description" content={metadata.description} />
-        <meta property="og:title" content={metadata.title} />
-        <meta property="og:description" content={metadata.description} />
-        <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://www.virtualrenovation.ai/" />
-        <meta property="og:image" content="/images/virtualrenovationhome.png" />
-        <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content={metadata.title} />
-        <meta name="twitter:description" content={metadata.description} />
+        <meta content={metadata.description} name="description" />
+        <meta content={metadata.title} property="og:title" />
+        <meta content={metadata.description} property="og:description" />
+        <meta content="website" property="og:type" />
+        <meta content="https://www.virtualrenovation.ai/" property="og:url" />
+        <meta content="/images/virtualrenovationhome.png" property="og:image" />
+        <meta content="summary_large_image" name="twitter:card" />
+        <meta content={metadata.title} name="twitter:title" />
+        <meta content={metadata.description} name="twitter:description" />
         <meta
-          name="twitter:image"
           content="/images/virtualrenovationhome.png"
+          name="twitter:image"
         />
         <script
-          type="application/ld+json"
           dangerouslySetInnerHTML={{
             __html: JSON.stringify({
               "@context": "https://schema.org",
@@ -64,6 +65,7 @@ export default async function Home() {
               })),
             }),
           }}
+          type="application/ld+json"
         />
       </Head>
 
@@ -79,6 +81,9 @@ export default async function Home() {
         </div>
         <div className="max-w-7xl mt-10 mx-auto">
           <ReviewCard reviews={reviews} />
+        </div>
+        <div className="max-w-7xl mt-10 mx-auto">
+          <UseCaseSection />
         </div>
       </section>
     </>
