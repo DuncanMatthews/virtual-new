@@ -21,20 +21,7 @@ export default async function Home() {
   return (
     <>
       <Head>
-        <title>{metadata.title}</title>
-        <meta content={metadata.description} name="description" />
-        <meta content={metadata.title} property="og:title" />
-        <meta content={metadata.description} property="og:description" />
-        <meta content="website" property="og:type" />
-        <meta content="https://www.virtualrenovation.ai/" property="og:url" />
-        <meta content="/images/virtualrenovationhome.png" property="og:image" />
-        <meta content="summary_large_image" name="twitter:card" />
-        <meta content={metadata.title} name="twitter:title" />
-        <meta content={metadata.description} name="twitter:description" />
-        <meta
-          content="/images/virtualrenovationhome.png"
-          name="twitter:image"
-        />
+        
         <script
           dangerouslySetInnerHTML={{
             __html: JSON.stringify({
