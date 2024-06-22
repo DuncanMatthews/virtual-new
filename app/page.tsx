@@ -3,11 +3,12 @@ import Head from "next/head";
 import Landing from "@/components/landing";
 import UseCases from "@/components/sections/use-cases";
 import ButtonGlow from "@/components/button-glow";
+import { Metadata } from 'next';
 import ReviewCard from "@/components/review-card";
 import { reviews } from "@/public/data/reviews";
 import UseCaseSection from "@/components/usecase-section";
 
-export const metadata = {
+export const metadata: Metadata = {
   title: "Virtual Renovation: AI-Powered Interior Design Platform",
   description:
     "Transform your space with AI-generated interior design ideas. Upload a photo of your room and explore personalized design concepts for your home renovation project.",
