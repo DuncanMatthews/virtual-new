@@ -3,7 +3,7 @@ import Head from "next/head";
 import Landing from "@/components/landing";
 import UseCases from "@/components/sections/use-cases";
 import ButtonGlow from "@/components/button-glow";
-import { Metadata } from 'next';
+import type { Metadata } from 'next'
 import ReviewCard from "@/components/review-card";
 import { reviews } from "@/public/data/reviews";
 import UseCaseSection from "@/components/usecase-section";
@@ -20,43 +20,7 @@ export default async function Home() {
 
   return (
     <>
-      <Head>
-        
-        <script
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify({
-              "@context": "https://schema.org",
-              "@type": "WebPage",
-              name: "Virtual Renovation",
-              description: metadata.description,
-              url: "https://www.virtualrenovation.ai/",
-              aggregateRating: {
-                "@type": "AggregateRating",
-                ratingValue: averageRating.toFixed(2),
-                ratingCount: reviews.length,
-                reviewCount: reviews.length,
-                bestRating: 5,
-                worstRating: 1,
-              },
-              review: reviews.map((review) => ({
-                "@type": "Review",
-                author: {
-                  "@type": "Person",
-                  name: review.reviewerName,
-                },
-                reviewBody: review.reviewContent,
-                datePublished: review.reviewDate,
-                reviewRating: {
-                  "@type": "Rating",
-                  ratingValue: review.rating,
-                },
-              })),
-            }),
-          }}
-          type="application/ld+json"
-        />
-      </Head>
-
+      
       <section className="flex flex-col">
         <div className="flex mb-10 justify-center items-center">
           <Landing />
