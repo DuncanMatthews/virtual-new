@@ -32,11 +32,12 @@ export default async function Home() {
         <div>
           <ButtonGlow />
         </div>
-        <div className="max-w-7xl mt-10 mx-auto">
-          <ReviewCard reviews={reviews} />
-        </div>
+        
         <div className="max-w-7xl mt-10 mx-auto">
           <DrawingToRealisticRenderer />
+        </div>
+        <div className="max-w-7xl mt-10 mx-auto">
+          <ReviewCard reviews={reviews} />
         </div>
         <div className="max-w-7xl mt-10 mx-auto">
           <UseCaseSection />

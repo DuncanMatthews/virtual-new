@@ -20,6 +20,10 @@ export const siteConfig = {
       label: "About",
       href: "/about",
     },
+    // {
+    //   label: "Blog",
+    //   href: "/posts",
+    // },
   ],
   navMenuItems: [
     {

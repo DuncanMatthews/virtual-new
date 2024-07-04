@@ -17,7 +17,7 @@ const ExampleCard = ({ title,description, originalSrc, renderSrc }:any) => {
           className="w-full h-full object-cover rounded-md"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ duration: 0.3 }}
+          transition={{ duration: 0.4 }}
         />
         <button
           onClick={() => setShowOriginal(!showOriginal)}
