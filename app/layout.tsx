@@ -1,15 +1,17 @@
 import "@/styles/globals.css";
-import { Viewport } from "next";
+import { Metadata, Viewport } from "next";
 import clsx from "clsx";
 import { ClerkProvider } from "@clerk/nextjs";
 import { Analytics } from "@vercel/analytics/react";
-import Head from "next/head";
-
 import { Providers } from "./providers";
-
 import { fontSans } from "@/config/fonts";
 import Navbar from "@/components/navbar";
 import Footer from "@/components/footer";
+
+export const metadata: Metadata = {
+  title: 'Your App Name',
+  description: 'Your app description',
+};
 
 export const viewport: Viewport = {
   themeColor: [
@@ -24,19 +26,14 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html suppressHydrationWarning lang="en">
-      <Head>
-        <meta charSet="UTF-8" />
-        <meta content="width=device-width, initial-scale=1.0" name="viewport" />
-        <meta content="#000000" name="theme-color" />
-      </Head>
-      <ClerkProvider>
-        <body
-          className={clsx(
-            "min-h-screen bg-slate-50 dark:bg-black font-sans antialiased",
-            fontSans.variable
-          )}
-        >
+    <html lang="en" suppressHydrationWarning>
+      <body
+        className={clsx(
+          "min-h-screen bg-slate-50 dark:bg-black font-sans antialiased",
+          fontSans.variable
+        )}
+      >
+        <ClerkProvider>
           <Providers themeProps={{ attribute: "class", defaultTheme: "dark" }}>
             <div className="relative flex flex-col min-h-screen">
               <header className="sm:px-4">
@@ -48,9 +45,9 @@ export default function RootLayout({
               <Footer />
             </div>
           </Providers>
-          <Analytics />
-        </body>
-      </ClerkProvider>
+        </ClerkProvider>
+        <Analytics />
+      </body>
     </html>
   );
 }
