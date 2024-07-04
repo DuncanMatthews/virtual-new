@@ -7,6 +7,7 @@ import type { Metadata } from 'next'
 import ReviewCard from "@/components/review-card";
 import { reviews } from "@/public/data/reviews";
 import UseCaseSection from "@/components/usecase-section";
+import DrawingToRealisticRenderer from "@/components/image-render";
 
 export const metadata: Metadata = {
   title: "Virtual Renovation: AI-Powered Interior Design Platform",
@@ -35,8 +36,12 @@ export default async function Home() {
           <ReviewCard reviews={reviews} />
         </div>
         <div className="max-w-7xl mt-10 mx-auto">
+          <DrawingToRealisticRenderer />
+        </div>
+        <div className="max-w-7xl mt-10 mx-auto">
           <UseCaseSection />
         </div>
+        
       </section>
     </>
   );
