@@ -1,5 +1,4 @@
 import React from "react";
-import Link from "next/link";
 import {
   FacebookShareButton,
   TwitterShareButton,
@@ -9,11 +8,16 @@ import {
   TwitterIcon,
   LinkedinIcon,
   WhatsappIcon,
+  TelegramShareButton,
+  TelegramIcon,
+  RedditShareButton,
+  RedditIcon,
 } from "next-share";
 
 const ShareableComponent = () => {
   const shareUrl = "https://virtualrenovation.ai"; // Replace with your actual website URL
-  const title = "Check out this awesome website! Virtual Renovation is an AI-Powered Interior Design Platform";
+  const title =
+    "Check out this awesome website! Virtual Renovation is an AI-Powered Interior Design Platform";
 
   return (
     <div className="flex flex-col items-center space-y-4 my-6">
@@ -44,6 +48,12 @@ const ShareableComponent = () => {
           <WhatsappShareButton separator=":: " title={title} url={shareUrl}>
             <WhatsappIcon round size={32} />
           </WhatsappShareButton>
+          <TelegramShareButton url={shareUrl}>
+            <TelegramIcon round size={32} />
+          </TelegramShareButton>
+          <RedditShareButton url={shareUrl}>
+            <RedditIcon round size={32} />
+          </RedditShareButton>
         </div>
       </div>
     </div>
