@@ -2,7 +2,6 @@
 "use client";
 import React from "react";
 import { useUser } from "@clerk/nextjs";
-import Link from "next/link";
 import { Image } from "@nextui-org/image";
 import { useState } from "react";
 // eslint-disable-next-line import/order
@@ -32,6 +31,7 @@ import DropDown from "@/components/drop-down";
 import UploadImage from "@/components/upload-image";
 import LoadingDots from "@/components/loadingdots";
 import { CompareSlider } from "@/components/compare-slider";
+import ShareableComponent from "@/components/share-component";
 
 export default function Dream() {
   const { isLoaded, isSignedIn, user } = useUser();
@@ -144,14 +144,22 @@ export default function Dream() {
   return (
     <div className="flex flex-col justify-center items-center">
       {isLoaded || isSignedIn ? (
-        <Link
-          className="border border-gray-700 rounded-2xl py-2 px-4 text-gray-700 text-sm my-6 duration-300 ease-in-out hover:text-gray-300 hover:scale-105 transition"
-          href="/buy-credits"
-        >
-          Pricing is now available.{" "}
-          <span className="font-semibold text-purple-600">Click here</span> to
-          buy credits!
-        </Link>
+        <div className="flex flex-col items-center my-6">
+          {/* <Link
+            className="border border-gray-700 rounded-2xl py-2 px-4 text-gray-700 text-sm mb-4 duration-300 ease-in-out hover:text-gray-300 hover:scale-105 transition"
+            href="/buy-credits"
+          >
+            Pricing is now available.{" "}
+            <span className="font-semibold text-purple-600">Click here</span> to
+            buy credits!
+          </Link> */}
+
+          <div>
+            {/* Other content */}
+            <ShareableComponent />
+            {/* More content */}
+          </div>
+        </div>
       ) : (
         <a
           className="border border-gray-700 rounded-2xl py-2 px-4 text-gray-700 text-sm my-6 duration-300 ease-in-out hover:text-gray-300 transition"
