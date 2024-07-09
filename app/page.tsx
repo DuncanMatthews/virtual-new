@@ -1,9 +1,8 @@
-import Head from "next/head";
+import type { Metadata } from "next";
 
 import Landing from "@/components/landing";
 import UseCases from "@/components/sections/use-cases";
 import ButtonGlow from "@/components/button-glow";
-import type { Metadata } from 'next'
 import ReviewCard from "@/components/review-card";
 import { reviews } from "@/public/data/reviews";
 import UseCaseSection from "@/components/usecase-section";
@@ -21,7 +20,6 @@ export default async function Home() {
 
   return (
     <>
-      
       <section className="flex flex-col">
         <div className="flex mb-10 justify-center items-center">
           <Landing />
@@ -32,7 +30,7 @@ export default async function Home() {
         <div>
           <ButtonGlow />
         </div>
-        
+
         <div className="max-w-7xl mt-10 mx-auto">
           <DrawingToRealisticRenderer />
         </div>
@@ -42,7 +40,6 @@ export default async function Home() {
         <div className="max-w-7xl mt-10 mx-auto">
           <UseCaseSection />
         </div>
-        
       </section>
     </>
   );

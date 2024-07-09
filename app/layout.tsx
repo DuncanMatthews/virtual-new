@@ -3,6 +3,7 @@ import { Metadata, Viewport } from "next";
 import clsx from "clsx";
 import { ClerkProvider } from "@clerk/nextjs";
 import { Analytics } from "@vercel/analytics/react";
+import { GoogleTagManager } from "@next/third-parties/google";
 
 import { Providers } from "./providers";
 
@@ -37,6 +38,8 @@ export default function RootLayout({
       >
         <ClerkProvider>
           <Providers themeProps={{ attribute: "class", defaultTheme: "dark" }}>
+            <GoogleTagManager gtmId="GTM-5XC3B2VC" />
+
             <div className="relative flex flex-col min-h-screen">
               <header className="sm:px-4">
                 <Navbar />
