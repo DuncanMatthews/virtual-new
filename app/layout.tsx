@@ -9,6 +9,7 @@ import { Providers } from "./providers";
 import { fontSans } from "@/config/fonts";
 import Navbar from "@/components/navbar";
 import Footer from "@/components/footer";
+import { ClerkProvider } from "@clerk/nextjs";
 
 export const metadata: Metadata = {
   title: "Virtual Renovation AI",
@@ -35,7 +36,7 @@ export default function RootLayout({
           fontSans.variable,
         )}
       >
-        {/* <ClerkProvider> */}
+        <ClerkProvider>
         <Providers themeProps={{ attribute: "class", defaultTheme: "dark" }}>
           <GoogleTagManager gtmId="GTM-5XC3B2VC" />
 
@@ -49,7 +50,7 @@ export default function RootLayout({
             <Footer />
           </div>
         </Providers>
-        {/* </ClerkProvider> */}
+        </ClerkProvider>
         <Analytics />
       </body>
     </html>
