@@ -14,7 +14,13 @@ import { link as linkStyles } from "@nextui-org/theme";
 import NextLink from "next/link";
 import clsx from "clsx";
 import Image from "next/image";
-import { SignedIn, SignedOut, SignInButton, UserButton } from "@clerk/nextjs";
+import {
+  SignedIn,
+  SignedOut,
+  SignInButton,
+  SignUpButton,
+  UserButton,
+} from "@clerk/nextjs";
 
 import { siteConfig } from "@/config/site";
 import { ThemeSwitch } from "@/components/theme-switch";
@@ -95,7 +101,8 @@ export default function Navbar() {
         </SignedIn>
         <SignedOut>
           {/* Signed out users get sign in button */}
-          <SignInButton />
+          <SignInButton mode="modal" />
+          <SignUpButton mode="modal" />
         </SignedOut>
       </NavbarContent>
 
