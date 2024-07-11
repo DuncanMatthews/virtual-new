@@ -3,13 +3,13 @@ import { Metadata, Viewport } from "next";
 import clsx from "clsx";
 import { Analytics } from "@vercel/analytics/react";
 import { GoogleTagManager } from "@next/third-parties/google";
+import { ClerkProvider } from "@clerk/nextjs";
 
 import { Providers } from "./providers";
 
 import { fontSans } from "@/config/fonts";
 import Navbar from "@/components/navbar";
 import Footer from "@/components/footer";
-import { ClerkProvider } from "@clerk/nextjs";
 
 export const metadata: Metadata = {
   title: "Virtual Renovation AI",
@@ -37,19 +37,19 @@ export default function RootLayout({
         )}
       >
         <ClerkProvider>
-        <Providers themeProps={{ attribute: "class", defaultTheme: "dark" }}>
-          <GoogleTagManager gtmId="GTM-5XC3B2VC" />
+          <Providers themeProps={{ attribute: "class", defaultTheme: "dark" }}>
+            <GoogleTagManager gtmId="GTM-5XC3B2VC" />
 
-          <div className="relative flex flex-col min-h-screen">
-            <header className="sm:px-4">
-              <Navbar />
-            </header>
-            <main className="container mx-auto max-w-7xl pt-16 px-4 sm:px-6 flex-grow">
-              {children}
-            </main>
-            <Footer />
-          </div>
-        </Providers>
+            <div className="relative flex flex-col min-h-screen">
+              <header className="sm:px-4">
+                <Navbar />
+              </header>
+              <main className="container mx-auto max-w-7xl pt-16 px-4 sm:px-6 flex-grow">
+                {children}
+              </main>
+              <Footer />
+            </div>
+          </Providers>
         </ClerkProvider>
         <Analytics />
       </body>
